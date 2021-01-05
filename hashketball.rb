@@ -1,4 +1,6 @@
-# Write your code below game_hash
+require 'pry'
+
+
 def game_hash
   {
     home: {
@@ -15,6 +17,8 @@ def game_hash
           steals: 3,
           blocks: 1,
           slam_dunks: 1
+          
+          binding.pry
         },
         {
           player_name: "Reggie Evans",
@@ -126,4 +130,3 @@ def game_hash
   }
 end
 
-# Write code here
