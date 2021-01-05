@@ -130,3 +130,90 @@ def game_hash
   }
 end
 
+def num_points_scored(players_name)
+  # knows the number of points scored by each player
+  game_hash
+  game_hash.each do |home_or_away, key|
+    key[:players].each do |name|
+      if name[:player_name] == players_name
+      return name[:points]
+      end
+    end
+  end
+end
+
+def shoe_size(players_name)
+  #knows the shoe size of each player
+  game_hash
+  game_hash.each do |home_or_away, key|
+    key[:players].each do |name|
+      if name[:player_name] == players_name
+        return name[:shoe]
+      end
+    end
+  end
+end
+
+def team_colors(team)
+  #knows the Brooklyn Nets colors are black and White
+  game_hash
+  game_hash.each do |home_or_away, key|
+    if key[:team_name] == team
+      return key[:colors]
+    end
+  end
+end
+
+def team_names
+  #returns the team's names
+  game_hash
+  teams = []
+  game_hash.each do |home_or_away, key|
+    teams << key[:team_name]
+  end
+  teams
+end
+
+def player_numbers(team)
+  #returns the player's jersey numbers
+  game_hash
+  team_numbers = []
+  game_hash.each do |home_or_away, key|
+    if key[:team_name] == team
+      key[:players].each do |player|
+        team_numbers << player[:number]
+      end
+    end
+  end
+  team_numbers
+end
+
+def player_stats(players_name)
+  #returns all stats for a given player
+  game_hash
+  game_hash.each do |home_or_away, key|
+    key[:players].each do |name|
+     if name[:player_name] == players_name
+      return name.reject { |stat| stat == :player_name }
+     end
+    end
+  end
+end
+
+def big_shoe_rebounds
+  #returns the number of rebounds of the player with the biggest shoe size
+  game_hash
+  shoe_sizes = []
+  game_hash.each do |home_or_away, key|
+    key[:players].each do |player|
+      shoe_sizes << player[:shoe]
+    end
+  end
+  game_hash.each do |home_or_away, key|
+    key[:players].each do |player|
+      if player[:shoe] == shoe_sizes.max
+        return player[:rebounds]
+      end
+    end
+  end
+end
