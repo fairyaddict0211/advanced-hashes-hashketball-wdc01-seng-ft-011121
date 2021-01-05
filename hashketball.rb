@@ -176,18 +176,20 @@ def player_numbers(team)
   team_numbers
 end
 
-def player_stats(name)
-    stats = {}
-    game_hash.each do |locale, info|
-      new = info[:players]
-        new.each do |names|
-          if names.keys.include?(name)
-              stats = names[name]
-       end 
-     end
-    end 
-  stats
-end 
+def player_stats(input)
+  game_hash.each do |team, team_info|
+    team_info.each do |key, value|
+      if key == :players
+        value.each do |player|
+          if input == player[:player_name]
+            return player
+          end
+        end
+      end
+    end
+  end
+end
+
 
 def big_shoe_rebounds
   shoe_sizes = []
